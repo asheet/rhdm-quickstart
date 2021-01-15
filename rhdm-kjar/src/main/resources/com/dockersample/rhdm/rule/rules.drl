@@ -1,0 +1,13 @@
+package com.dockersample.rhdm.rule;
+
+import com.dockersample.rhdm.data.Person;
+import com.dockersample.rhdm.data.Greeting;
+
+rule "Greeting"
+	dialect "mvel"
+	ruleflow-group "greeting"
+	when
+	then
+		System.out.println("Hello World!");
+end
+

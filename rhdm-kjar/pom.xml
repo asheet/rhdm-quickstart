@@ -5,29 +5,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.juliaaano</groupId>
+    <groupId>com.dockersample</groupId>
     <artifactId>rhdm-dependencies</artifactId>
-    <version>1.0.2</version>
-    <!-- <version>1.0.3-SNAPSHOT</version> -->
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>rhdm-kjar</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>kjar</packaging>
 
   <name>RHDM Quickstart</name>
-  <description>Red Hat Decision Manager project quickstart kjar.</description>
-  <url>https://github.com/juliaaano/rhdm-quickstart</url>
+  <description>Red Hat Decision Manager project quickstart kjar. Copied from https://github.com/juliaaano/rhdm-quickstart</description>
 
   <dependencies>
     <!-- local -->
-    <dependency>
-      <groupId>com.juliaaano</groupId>
-      <artifactId>rhdm-event-listener</artifactId>
-      <version>1.0.2</version>
-      <!-- <version>1.0.3-SNAPSHOT</version> -->
-      <scope>runtime</scope>
-    </dependency>
+    
     <!-- test -->
     <dependency>
       <groupId>org.drools</groupId>

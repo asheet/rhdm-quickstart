@@ -1,64 +1,51 @@
-# Red Hat Decision Manager 
-[![Build Status](https://travis-ci.com/juliaaano/rhdm-quickstart.svg)](https://travis-ci.com/juliaaano/rhdm-quickstart)
+# Red Hat DM/PAM Docker Sample
 
-A collection of artifacts to get you started with Red Hat Decision Manager.
+This repo is an example of how bundle a rhpam/rhdm project with the red hat kie-server docker image.
 
-## Import and develop in Business Central
-
-Use the URL of this repo in Business Central.
-
-* The rhdm-kjar gets selected for import.
-* There is a dependency on **rhdm-dependencies** and **rhdm-event-listener**, but they are available in Maven Central.
-* For development, use the SNAPSHOT versions and build dependencies locally.
+This project was forked from https://github.com/juliaaano/rhdm-quickstart. Thank you to Juliano Mohr
+for his examples.
 
 ## Get started
+Please review these files to understand how it is working:
+1. Dockerfile
+2. docker-compose.yaml
+3. rhdm-dependencies/pom.xml
+4. rhdm-kjar/pom.xml
+5. rhdm-kjar - ruleflow.bpmn
+6. rhdm-kjar - rules.drl
 
-Experiment Decision Manager in two flavors: **JBoss EAP** and **Spring Boot**.
+### Requirements
+Maven and Docker installed
+
+### Build with Docker
+
+Access to **registry.redhat.io** (docker login) is required to build the JBoss image.
+
+```
+docker build --file Dockerfile --tag dockersample/rhdm-jboss .
+```
+
 
 #### JBoss EAP with Docker
 
 ```
 docker-compose up --detach --force-recreate rhdm-jboss
 docker-compose logs --follow rhdm-jboss
-curl -i -H 'Authorization: Basic dXNlcjpwYXNzd29yZA==' http://localhost:18080/services/rest/server
 ```
 
-#### Spring Boot with Docker
+### Check to see if Kie-server is up and running
+username & password - **admin:admin**
 
+The **docker-compose.yaml** file containers the kiecontainer id
+
+To see the running containers:
+In Postman - BasicAuth=admin:admin - GET
 ```
-docker-compose up --detach --force-recreate rhdm-springboot
-docker-compose logs --follow rhdm-springboot
-curl -i -H 'Authorization: Basic dXNlcjp1c2Vy' http://localhost:18090/rest/server
-```
-
-## Build with Docker
-
-Access to **registry.redhat.io** (docker login) is required to build the JBoss image.
-
-```
-docker build --file d.jboss.Dockerfile --tag juliaaano/rhdm-jboss .
-docker build --file d.springboot.Dockerfile --tag juliaaano/rhdm-springboot .
+http://localhost:18080/services/rest/server/containers
 ```
 
-## Postman
-
-Enjoy a setup of automated tests with Postman/Newman.
-
-Use Docker Compose to bring up the containers and then run:
-
+To run the process and rules:
+In Postman - BasicAuth=admin:admin - POST - body={}
 ```
-POSTMAN_ENV=rhdm-jboss docker-compose run --rm postman
-POSTMAN_ENV=rhdm-springboot docker-compose run --rm postman
+http://localhost:18080/services/rest/server/containers/dockersample/processes/ruleflow/instances
 ```
-
-## Install Decision Manager
-
-For the installation of Decision Manager, visit:
-
-* https://github.com/juliaaano/rhdm-eap-ansible
-
-## Develop with Java, Maven and Spring Boot
-
-The rhdm-springboot app is a convenient wat to deploy the kjar and its assets.
-
-See [rhdm-springboot](rhdm-springboot) for more info.

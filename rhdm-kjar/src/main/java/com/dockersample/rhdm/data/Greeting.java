@@ -1,5 +1,4 @@
-package com.juliaaano.rhdm.data;
-
+package com.dockersample.rhdm.data;
 
 public class Greeting {
 

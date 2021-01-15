@@ -1,12 +1,7 @@
 # RHDM quickstart kjar
 
-Red Hat Decision Manager project quickstart kjar.
-* Use it with Decision Central.
-* Suitable for KIE Server deployments.
-* Check out the different types of rule assets.
-
-## Dependencies
-The dependencies **rhdm-dependencies** and **rhdm-event-listener** are available in Maven central, but you can change the versions to SNAPSHOT and build them locally with *mvn install*.
+This project was forked from https://github.com/juliaaano/rhdm-quickstart. Thank you to Juliano Mohr
+for his examples.
 
 ## Maven
 ```
